@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:create]
+
+  def index
+    user = User.all
+    render json: {user: user}
+  end
+
   def create
     username = User.find_by_username(params[:username])
     user = User.create(user_params) 
@@ -17,6 +23,20 @@ class UsersController < ApplicationController
     else
         render json: {errors: user.errors.full_messages}, status: :not_acceptable
     end
+  end
+
+  def show
+    user = User.find_by(params[:id])
+    render json: {user: user}
+  end
+
+  def destroy
+    User.destroy(params[:id])
+  end
+
+  def update
+    user = User.update(user_params)
+    render json: {user: user}
   end
 
   private 

@@ -18,4 +18,17 @@ FactoryBot.define do
         active {"false"}
     end
   end
+
+  factory :product do
+
+    trait :product do
+      name {"geeta"}
+      description {"123"}
+      price {"100"}
+      size {"l"}
+      category_id {"1"}
+    end
+
+  end
+
 end

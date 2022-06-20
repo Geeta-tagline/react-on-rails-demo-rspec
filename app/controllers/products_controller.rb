@@ -4,6 +4,11 @@ class ProductsController < ApplicationController
 		render json: {product: Product.paginate(page: params[:page], per_page: 6), allproduct: Product.all.count}
 	end
 
+	def show
+		product = Product.find_by(params[:id])
+		render json: {product: product}
+	end
+
 	def create
 		if params[:searchdata].present?
 			name = params[:searchdata][:name]
@@ -14,6 +19,13 @@ class ProductsController < ApplicationController
 			product = Product.create(product_params)
 			render json: product
 		end
+	end
+
+	def destroy
+		Product.destroy(params[:id])
+	end
+	def update
+		Product.update(product_params)
 	end
 
 	private

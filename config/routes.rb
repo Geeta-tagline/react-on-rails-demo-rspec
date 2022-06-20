@@ -11,12 +11,12 @@ Rails.application.routes.draw do
     get "/category", to: "home#index"
     get "/cart", to: "home#index"
    resources :categories
-   resource :users, only: [:create]
+   resources :users
     post "/login", to: "auth#login"
     get "/auto_login", to: "auth#auto_login"
     get "/user_is_authed", to: "auth#user_is_authed"
     resources :carts, only: [:index, :create, :destroy, :update]
-    resources :products, only: [:index, :create, :destroy, :update]
+    resources :products
     resources :offers, only: [:index, :create, :destroy, :update]
 
   namespace :api do 
